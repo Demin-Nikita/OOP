@@ -4,8 +4,9 @@
 class CompositeShape : public Shape
 {
 public:
-	CompositeShape(int len);
-	void addShape(Shape* s, int i);
+	CompositeShape();
+	~CompositeShape();
+	void addShape(Shape* s);
 
 	virtual float getArea();
 	virtual Shape* clone();

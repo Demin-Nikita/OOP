@@ -1,16 +1,19 @@
 #include "CompositeShape.h"
 #include <algorithm>
 
-CompositeShape::CompositeShape(int len) {
-	len_ = len;
+CompositeShape::CompositeShape() {
 	pos_.x = 0.0;
 	pos_.y = 0.0;
+	len_ = 0;
 }
 
-void CompositeShape::addShape(Shape* s, int i) {
+CompositeShape::~CompositeShape() = default;
+
+void CompositeShape::addShape(Shape* s) {
+	len_++;
 	Shape* s_copy;
 	s_copy = s->clone();
-	complex_[i] = s_copy;
+	complex_[len_-1] = s_copy;
 
 	pos_.x = s->getFrameRect().pos.x;
 	pos_.y = s->getFrameRect().pos.y;
@@ -26,10 +29,13 @@ float CompositeShape::getArea() {
 
 Shape* CompositeShape::clone() {
 	Shape* s;
-	CompositeShape comp(this->len_);
-	comp.complex_ = this->complex_;
-	comp.pos_ = this->pos_;
-	s = &comp;
+	CompositeShape newCompositeShape;
+	
+	for (int i = 0; i < len_; i++) {
+		newCompositeShape.addShape(complex_[i]);
+	}
+	newCompositeShape.pos_ = this->pos_;
+	s = &newCompositeShape;
 	return s;
 }
 

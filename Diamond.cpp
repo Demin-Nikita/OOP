@@ -4,18 +4,6 @@ Diamond::Diamond() { pos_.x = 0.0; pos_.y = 0.0; xdiag_ = 0.0, ydiag_ = 0.0; }
 Diamond::Diamond(float px, float py, float xdiag, float ydiag) { pos_.x = px; pos_.y = py; xdiag_ = xdiag; ydiag_ = ydiag; }
 Diamond::~Diamond() = default;
 
-point_t Diamond::getPos() {
-	return this->pos_;
-}
-
-float Diamond::getXdiag() {
-	return this->xdiag_;
-}
-
-float Diamond::getYdiag() {
-	return this->ydiag_;
-}
-
 float Diamond::getArea() {
 	return (this->xdiag_ * this->ydiag_) * 0.5;
 }
