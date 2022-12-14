@@ -77,7 +77,6 @@ void CompositeShape::move(point_t& p) {
 	float dx = 0, dy = 0;
 	dx = p.x - pos_.x;
 	dy = p.y - pos_.y;
-	std::cout << pos_.x << " " << pos_.y << "\n";
 	point_t tp{};
 
 	for (int i = 0; i < len_; i++) {
@@ -85,6 +84,8 @@ void CompositeShape::move(point_t& p) {
 		tp.y = complex_[i][0].getFrameRect().pos.y + dy;
 		complex_[i][0].move(tp);
 	}
+	pos_.x = p.x;
+	pos_.y = p.y;
 }
 
 void CompositeShape::scale(float k) {

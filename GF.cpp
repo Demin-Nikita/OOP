@@ -22,6 +22,35 @@ void gfsort(Shape** mass, int count) {
 	}
 }
 
+void moveXY(Shape* shape, float dx, float dy) {
+	point_t tp{};
+	tp.x = shape->getFrameRect().pos.x + dx;
+	tp.y = shape->getFrameRect().pos.y + dy;
+	shape->move(tp);
+}
+
+void isotropicScale(Shape* shape, float posX, float posY, float k) {
+	point_t a1{};
+	a1.x = shape->getFrameRect().pos.x - shape->getFrameRect().width / 2;
+	a1.y = shape->getFrameRect().pos.y - shape->getFrameRect().height / 2;
+	point_t isotropicCenter{};
+	isotropicCenter.x = posX;
+	isotropicCenter.y = posY;
+	shape->move(isotropicCenter);
+	point_t a2{};
+	a2.x = shape->getFrameRect().pos.x - shape->getFrameRect().width / 2;
+	a2.y = shape->getFrameRect().pos.y - shape->getFrameRect().height / 2;
+	float dx = a1.x - a2.x;
+	float dy = a1.y - a2.y;
+	shape->scale(k);
+	dx *= k;
+	dy *= k;
+	point_t tp{};
+	tp.x = posX + dx;
+	tp.y = posY + dy;
+	shape->move(tp);
+}
+
 int main()
 {
 	std::ifstream in;
@@ -78,27 +107,29 @@ int main()
 		if (type == "q") {
 			break;
 		}
+		if (type == "MOVE") {
+			float dx = 0, dy = 0;
+			in >> dx >> dy;
+			for (int i = 0; i < count; i++) {
+				moveXY(mass[i], dx, dy);
+			}
+		}
+		if (type == "SCALE") {
+			float posX, posY, k;
+			in >> posX >> posY >> k;
+			for (int i = 0; i < count; i++) {
+				isotropicScale(mass[i], posX, posY, k);
+			}
+		}
 	}
 
-	std::cout << *(mass[0]) << '\n';
-	std::cout << *(mass[1]) << '\n';
-	std::cout << *(mass[2]) << '\n' << '\n';
-
 	gfsort(mass, count);
-
-	std::cout << *(mass[0]) << '\n';
-	std::cout << *(mass[1]) << '\n';
-	std::cout << *(mass[2]) << '\n';
-
 	
-
+	std::cout << "AFTER SORTING: \n";
+	for (int i = 0; i < count; i++) {
+		std::cout << *(mass[i]) << '\n';
+	}
 	
-	/*for (int i = 0; i < 3; i++) {
-		std::cout << mass[i][0];
-	}*/
-	//std::cout << mass[0][0] << '\n';
-	/*std::cout << mass[1][0] << '\n';
-	std::cout << mass[2][0] << '\n';*/
 	in.close();
 	return 0;
 }
