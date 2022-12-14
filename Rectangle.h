@@ -8,10 +8,7 @@ public:
 	Rectangle(float lbx, float lby, float rtx, float rty);
 	~Rectangle();
 
-	point_t getLB();
-	point_t getRT();
-
-	virtual float getArea() override;
+	virtual float getArea();
 	virtual rectangle_t getFrameRect();
 	virtual void move(float k);
 	virtual void move(point_t& p);

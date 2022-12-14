@@ -57,20 +57,16 @@ int main()
 	in.open("input.txt");
 	
 	int count = 0;
-	rectangle_t frame{};
-	int n = 0;
-	std::string name;
-	Shape* s;
-	CompositeShape complex;
-	Rectangle r;
-	
 	std::string type;
 
 	Shape** mass = new Shape*;
 
-	while (true) {
+	while (in) {
 		in >> type;
 		if (type == "COMPLEX") {
+			CompositeShape complex;
+			std::string name;
+			int n = 0;
 			in >> n;
 			for (int i = 0; i < n; i++) {
 				in >> name;
@@ -104,9 +100,6 @@ int main()
 			mass[count] = d.clone();
 			count++;
 		}
-		if (type == "q") {
-			break;
-		}
 		if (type == "MOVE") {
 			float dx = 0, dy = 0;
 			in >> dx >> dy;
@@ -125,7 +118,6 @@ int main()
 
 	gfsort(mass, count);
 	
-	std::cout << "AFTER SORTING: \n";
 	for (int i = 0; i < count; i++) {
 		std::cout << *(mass[i]) << '\n';
 	}

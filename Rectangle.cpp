@@ -7,9 +7,6 @@ Rectangle::Rectangle(float lbx, float lby, float rtx, float rty) {
 }
 Rectangle::~Rectangle() = default;
 
-point_t Rectangle::getLB() { return lb_; }
-point_t Rectangle::getRT() { return rt_; }
-
 float Rectangle::getArea() {
 	return (rt_.x - lb_.x) * (rt_.y - lb_.y);
 }
