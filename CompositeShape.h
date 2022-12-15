@@ -8,7 +8,6 @@ public:
 	~CompositeShape();
 
 	void addShape(Shape* s);
-	void clear();
 	float getArea();
 	Shape* clone();
 	rectangle_t getFrameRect();

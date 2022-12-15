@@ -19,13 +19,6 @@ void CompositeShape::addShape(Shape* s) {
 	pos_.y = s->getFrameRect().pos.y;
 }
 
-void CompositeShape::clear() {
-	pos_.x = 0.0;
-	pos_.y = 0.0;
-	complex_ = &complex_[len_];
-	len_ = 0;
-}
-
 float CompositeShape::getArea() {
 	float s = 0;
 	for (int i = 0; i < len_; i++) {
@@ -99,8 +92,8 @@ void CompositeShape::scale(float k) {
 	point_t tp{};
 
 	for (int i = 0; i < len_; i++) {
-		tp.x = complex_[i][0].getFrameRect().pos.x + (complex_[i][0].getFrameRect().pos.x - pos_.x) * k;
-		tp.y = complex_[i][0].getFrameRect().pos.y + (complex_[i][0].getFrameRect().pos.y - pos_.y) * k;
+		tp.x = pos_.x + (complex_[i][0].getFrameRect().pos.x - pos_.x) * k;
+		tp.y = pos_.y + (complex_[i][0].getFrameRect().pos.y - pos_.y) * k;
 		complex_[i][0].move(tp);
 		complex_[i][0].scale(k);
 	}

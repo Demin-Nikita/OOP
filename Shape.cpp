@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "Shape.h"
 #include "Rectangle.h"
 #include "Diamond.h"
@@ -8,7 +9,7 @@ std::ostream& operator<< (std::ostream& out, Shape& s) {
 	lby = s.getFrameRect().pos.y - s.getFrameRect().height / 2;
 	rtx = s.getFrameRect().pos.x + s.getFrameRect().width / 2;
 	rty = s.getFrameRect().pos.y + s.getFrameRect().height / 2;
-	return (out << s.getName() << " " << s.getArea() << " lb: (" << lbx << "; " << lby << ") rt: (" << rtx << "; " << rty << ")");
+	return (out << std::fixed << std::setprecision(1) << s.getName() << " " << s.getArea() << " lb: (" << lbx << "; " << lby << ") rt: (" << rtx << "; " << rty << ")");
 }
 
 bool Shape::operator< (Shape& right) {
