@@ -8,14 +8,13 @@ public:
 	Rectangle(float lbx, float lby, float rtx, float rty);
 	~Rectangle();
 
-	virtual float getArea();
-	virtual rectangle_t getFrameRect();
-	virtual void move(float k);
-	virtual void move(point_t& p);
-	virtual void scale(float k);
-	virtual std::string getName();
-	virtual Shape* clone();
-
+	float getArea();
+	rectangle_t getFrameRect();
+	void move(float k);
+	void move(point_t& p);
+	void scale(float k);
+	std::string getName();
+	Shape* clone();
 private:
 	point_t lb_, rt_;
 	std::string name_ = "RECTANGLE";

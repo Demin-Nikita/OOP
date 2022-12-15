@@ -8,18 +8,13 @@ public:
 	Diamond(float px, float py, float xdiag, float ydiag);
 	~Diamond();
 
-	point_t getPos();
-	float getXdiag();
-	float getYdiag();
-
-	virtual float getArea() override;
-	virtual rectangle_t getFrameRect();
-	virtual void move(float k);
-	virtual void move(point_t& p);
-	virtual void scale(float k);
-	virtual std::string getName();
-	virtual Shape* clone();
-
+	float getArea() override;
+	rectangle_t getFrameRect();
+	void move(float k);
+	void move(point_t& p);
+	void scale(float k);
+	std::string getName();
+	Shape* clone();
 private:
 	point_t pos_;
 	float xdiag_, ydiag_;

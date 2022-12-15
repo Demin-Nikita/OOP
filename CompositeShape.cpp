@@ -19,6 +19,13 @@ void CompositeShape::addShape(Shape* s) {
 	pos_.y = s->getFrameRect().pos.y;
 }
 
+void CompositeShape::clear() {
+	pos_.x = 0.0;
+	pos_.y = 0.0;
+	complex_ = &complex_[len_];
+	len_ = 0;
+}
+
 float CompositeShape::getArea() {
 	float s = 0;
 	for (int i = 0; i < len_; i++) {

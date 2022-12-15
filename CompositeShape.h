@@ -6,15 +6,16 @@ class CompositeShape : public Shape
 public:
 	CompositeShape();
 	~CompositeShape();
-	void addShape(Shape* s);
 
-	virtual float getArea();
-	virtual Shape* clone();
-	virtual rectangle_t getFrameRect();
-	virtual std::string getName();
-	virtual void move(float k);
-	virtual void move(point_t& p);
-	virtual void scale(float k);
+	void addShape(Shape* s);
+	void clear();
+	float getArea();
+	Shape* clone();
+	rectangle_t getFrameRect();
+	std::string getName();
+	void move(float k);
+	void move(point_t& p);
+	void scale(float k);
 private:
 	Shape** complex_ = new Shape*;
 	int len_;
