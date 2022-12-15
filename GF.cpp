@@ -55,7 +55,10 @@ int main()
 			for (int i = 0; i < n; i++) {
 				in >> name;
 				if (name == "RECTANGLE") {
-					complex.addShape(readRect(in));
+					Shape* s = readRect(in);
+					if (s != NULL) {
+						complex.addShape(s);
+					}
 				}
 				else if (name == "DIAMOND") {
 					Shape* s = readDiamond(in);
@@ -71,12 +74,18 @@ int main()
 			count++;
 		}
 		else if (type == "RECTANGLE") {
-			mass[count] = readRect(in)->clone();
-			count++;
+			Shape* s = readRect(in);
+			if (s != NULL) {
+				mass[count] = s->clone();
+				count++;
+			}
 		}
 		else if (type == "DIAMOND") {
-			mass[count] = readDiamond(in)->clone();
-			count++;
+			Shape* s = readDiamond(in);
+			if (s != NULL) {
+				mass[count] = s->clone();
+				count++;
+			}
 		}	
 		else if (type == "MOVE") {
 			moveAll(mass, count, in);
