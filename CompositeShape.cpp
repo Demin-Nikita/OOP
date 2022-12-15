@@ -15,8 +15,8 @@ void CompositeShape::addShape(Shape* s) {
 	s_copy = s->clone();
 	complex_[len_-1] = s_copy;
 
-	pos_.x = s->getFrameRect().pos.x;
-	pos_.y = s->getFrameRect().pos.y;
+	pos_.x = this->getFrameRect().pos.x;
+	pos_.y = this->getFrameRect().pos.y;
 }
 
 float CompositeShape::getArea() {
